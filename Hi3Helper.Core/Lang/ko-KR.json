@@ -76,7 +76,8 @@
     "RegionLoadingSubtitleTimeOut": "{0} 서버 로딩 시간이 초과되었어요 (> {1}초). 다시 시도하는 중...",
     "RegionLoadingSubtitleTooLong": "다시 시도하는 데 예상보다 시간이 더 걸리고 있어요. 연결 상태가 안정적인지 확인해 주세요!",
     "NavCtrlTitleSettings": "앱 설정",
-    "NotifNeverAsk": "다시 표시하지 않기"
+    "NotifNeverAsk": "다시 표시하지 않기",
+    "RegionComboBoxPlaceholder": "서버 선택"
   },
 
   "_HomePage": {

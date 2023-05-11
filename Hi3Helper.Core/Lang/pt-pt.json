@@ -76,7 +76,8 @@
     "RegionLoadingSubtitleTimeOut": "O tempo de carregamento da região {0} passou o esperado (> {1} seconds). Tentando novamente...",
     "RegionLoadingSubtitleTooLong": "Está a demorar mais do que o esperado. Por favor verifica se a tua conexão é estável.",
     "NavCtrlTitleSettings": "Definições da aplicação",
-    "NotifNeverAsk": "Não mostrar novamente"
+    "NotifNeverAsk": "Não mostrar novamente",
+    "RegionComboBoxPlaceholder": "Seleciona a região"
   },
 
   "_HomePage": {

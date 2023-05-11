@@ -76,7 +76,8 @@
     "RegionLoadingSubtitleTimeOut": "Terjadi masa tenggang saat membaca wilayah {0} (> {1} detik). Mencoba lagi...",
     "RegionLoadingSubtitleTooLong": "Proses memakan waktu lebih lama dari perkiraan. Pastikan bahwa koneksimu stabil.",
     "NavCtrlTitleSettings": "Pengaturan App",
-    "NotifNeverAsk": "Jangan munculkan ini lagi"
+    "NotifNeverAsk": "Jangan munculkan ini lagi",
+    "RegionComboBoxPlaceholder": "Pilih Region"
   },
 
   "_HomePage": {

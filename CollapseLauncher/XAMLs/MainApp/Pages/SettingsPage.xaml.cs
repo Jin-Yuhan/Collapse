@@ -46,9 +46,6 @@ namespace CollapseLauncher.Pages
             if (IsAppLangNeedRestart)
                 AppLangSelectionWarning.Visibility = Visibility.Visible;
 
-            if (IsChangeRegionWarningNeedRestart)
-                ChangeRegionToggleWarning.Visibility = Visibility.Visible;
-
             string SwitchToVer = IsPreview ? "Stable" : "Preview";
             ChangeReleaseBtnText.Text = string.Format(Lang._SettingsPage.AppChangeReleaseChannel, SwitchToVer);
 #if !DISABLEDISCORD
@@ -437,13 +434,7 @@ namespace CollapseLauncher.Pages
         private bool IsShowRegionChangeWarning
         {
             get => LauncherConfig.IsShowRegionChangeWarning;
-            set
-            {
-                IsChangeRegionWarningNeedRestart = true;
-                ChangeRegionToggleWarning.Visibility = Visibility.Visible;
-
-                LauncherConfig.IsShowRegionChangeWarning = value;
-            }
+            set => LauncherConfig.IsShowRegionChangeWarning = value;
         }
     }
 }

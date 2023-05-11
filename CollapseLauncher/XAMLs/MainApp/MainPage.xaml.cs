@@ -141,9 +141,6 @@ namespace CollapseLauncher
         {
             try
             {
-                ChangeRegionConfirmBtn.Visibility = !IsShowRegionChangeWarning ? Visibility.Collapsed : Visibility.Visible;
-                ChangeRegionConfirmBtnNoWarning.Visibility = !IsShowRegionChangeWarning ? Visibility.Visible : Visibility.Collapsed;
-
                 if (!await CheckForAdminAccess(this))
                 {
                     Application.Current.Exit();
@@ -197,6 +194,8 @@ namespace CollapseLauncher
             SpawnWebView2Invoker.SpawnEvent += SpawnWebView2Invoker_SpawnEvent;
             ShowLoadingPageInvoker.PageEvent += ShowLoadingPageInvoker_PageEvent;
             ChangeTitleDragAreaInvoker.TitleBarEvent += ChangeTitleDragAreaInvoker_TitleBarEvent;
+
+            OnIsShowRegionChangeWarningChangedEvent += MainPage_OnIsShowRegionChangeWarningChangedEvent;
         }
 
         private void UnsubscribeEvents()
@@ -208,6 +207,13 @@ namespace CollapseLauncher
             SpawnWebView2Invoker.SpawnEvent -= SpawnWebView2Invoker_SpawnEvent;
             ShowLoadingPageInvoker.PageEvent -= ShowLoadingPageInvoker_PageEvent;
             ChangeTitleDragAreaInvoker.TitleBarEvent -= ChangeTitleDragAreaInvoker_TitleBarEvent;
+
+            OnIsShowRegionChangeWarningChangedEvent -= MainPage_OnIsShowRegionChangeWarningChangedEvent;
+        }
+
+        private void MainPage_OnIsShowRegionChangeWarningChangedEvent(bool value)
+        {
+            ChangeRegionConfirmBtn.Visibility = value ? Visibility.Visible : Visibility.Collapsed;
         }
 
         private void ChangeTitleDragAreaInvoker_TitleBarEvent(object sender, ChangeTitleDragAreaProperty e)
@@ -742,14 +748,7 @@ namespace CollapseLauncher
 
             List<StackPanel> CurRegionList = BuildGameRegionListUI(SelectedCategoryString);
             ComboBoxGameRegion.ItemsSource = CurRegionList;
-            ComboBoxGameRegion.SelectedIndex = GetIndexOfRegionStringOrDefault(SelectedCategoryString);
-        }
-
-        private int GetIndexOfRegionStringOrDefault(string category)
-        {
-            int? index = GetPreviousGameRegion(category);
-
-            return index == -1 || index == null ? 0 : index ?? 0;
+            ComboBoxGameRegion.SelectedIndex = GetPreviousGameRegion(SelectedCategoryString);
         }
 
         private async Task CheckMetadataUpdateInBackground()
@@ -997,6 +996,7 @@ namespace CollapseLauncher
         private void EnableRegionChangeButton(object sender, SelectionChangedEventArgs e)
         {
             object selValue = ((ComboBox)sender).SelectedValue;
+
             if (selValue != null)
             {
                 string category = (string)ComboBoxGameCategory.SelectedValue;
@@ -1004,9 +1004,15 @@ namespace CollapseLauncher
                 PresetConfigV2 preset = ConfigV2.MetadataV2[category][region];
                 ChangeRegionWarningText.Text = preset.GameChannel != GameChannel.Stable ? string.Format(Lang._MainPage.RegionChangeWarnExper1, preset.GameChannel) : string.Empty;
                 ChangeRegionWarning.Visibility = preset.GameChannel != GameChannel.Stable ? Visibility.Visible : Visibility.Collapsed;
+
+                // goto region directly
+                if (!IsShowRegionChangeWarning)
+                {
+                    ChangeRegionNoWarning();
+                }
             }
+
             ChangeRegionConfirmBtn.IsEnabled = !LockRegionChangeBtn;
-            ChangeRegionConfirmBtnNoWarning.IsEnabled = !LockRegionChangeBtn;
         }
 
         private void ErrorSenderInvoker_ExceptionEvent(object sender, ErrorProperties e)

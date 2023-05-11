@@ -76,7 +76,8 @@
     "RegionLoadingSubtitleTimeOut": "{0} サーバーの読込がタイムアウトしました。 (> {1}秒)。 再試行中...",
     "RegionLoadingSubtitleTooLong": "再試行に時間がかかっています...インターネット接続の安定を確認してください！",
     "NavCtrlTitleSettings": "アプリ設定",
-    "NotifNeverAsk": "二度と表示しない"
+    "NotifNeverAsk": "二度と表示しない",
+    "RegionComboBoxPlaceholder": "サーバーの選択"
   },
 
   "_HomePage": {

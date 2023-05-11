@@ -94,13 +94,8 @@
                                 <ComboBox x:Name="ComboBoxGameCategory" PlaceholderText="Honkai Impact 3rd"
                                   ItemsSource="{x:Bind p:ConfigV2Store.ConfigV2GameCategory, Mode=OneWay}"
                                   CornerRadius="15,0,0,15" Width="167" Canvas.ZIndex="2" Margin="0,0,0,0" SelectionChanged="SetGameCategoryChange"/>
-                                <ComboBox x:Name="ComboBoxGameRegion" PlaceholderText="Southeast Asia"
+                                <ComboBox x:Name="ComboBoxGameRegion" PlaceholderText="{x:Bind helper:Locale.Lang._MainPage.RegionComboBoxPlaceholder}"
                                   CornerRadius="0,15,15,0" Width="148" Canvas.ZIndex="2"  Margin="0,0,8,0" SelectionChanged="EnableRegionChangeButton"/>
-                                <Button CornerRadius="15" x:Name="ChangeRegionConfirmBtnNoWarning" Style="{ThemeResource AccentButtonStyle}" Click="ChangeRegionNoWarning" IsEnabled="False" Visibility="Collapsed">
-                                    <Button.Content>
-                                        <TextBlock Text="{x:Bind helper:Locale.Lang._Misc.Change}" FontWeight="Medium" Margin="4,0"/>
-                                    </Button.Content>
-                                </Button>
                                 <Button CornerRadius="15" x:Name="ChangeRegionConfirmBtn" Style="{ThemeResource AccentButtonStyle}" IsEnabled="False">
                                     <Button.Content>
                                         <TextBlock Text="{x:Bind helper:Locale.Lang._Misc.Change}" FontWeight="Medium" Margin="4,0"/>

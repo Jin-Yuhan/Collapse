@@ -317,9 +317,8 @@ namespace CollapseLauncher
             return isBeginValid && isEndValid;
         }
 
-        private async void ChangeRegionNoWarning(object sender, RoutedEventArgs e)
+        private async void ChangeRegionNoWarning()
         {
-            (sender as Button).IsEnabled = false;
             await LoadRegionRootButton();
             HideLoadingPopup(true, Lang._MainPage.RegionLoadingTitle, RegionToChangeName);
             MainFrameChanger.ChangeMainFrame(m_appMode == AppMode.Hi3CacheUpdater ? typeof(CachesPage) : typeof(HomePage));
@@ -387,11 +386,18 @@ namespace CollapseLauncher
             InnerTokenSource.Cancel();
             ChangeRegionConfirmProgressBar.Visibility = Visibility.Collapsed;
             ChangeRegionConfirmBtn.IsEnabled = true;
-            ChangeRegionConfirmBtnNoWarning.IsEnabled = true;
             ChangeRegionBtn.IsEnabled = true;
             HideLoadingPopup(true, Lang._MainPage.RegionLoadingTitle, RegionToChangeName);
 
             (sender as Button).Visibility = Visibility.Collapsed;
+
+            if (!IsShowRegionChangeWarning)
+            {
+                // reset combo boxes
+                string gameCategory = GetAppConfigValue("GameCategory").ToString();
+                ComboBoxGameCategory.SelectedIndex = ConfigV2GameCategory.IndexOf(gameCategory);
+                ComboBoxGameRegion.SelectedIndex = GetPreviousGameRegion(gameCategory);
+            }
         }
 
         private async void DelayedLoadingRegionPageTask()

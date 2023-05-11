@@ -90,9 +90,10 @@ namespace Hi3Helper.Preset
 
             if (!IsConfigKeyExist(iniKeyName))
             {
-                regionName = ConfigV2GameRegions.FirstOrDefault();
-                SetAndSaveConfigValue(iniKeyName, regionName);
-                return ConfigV2GameRegions.IndexOf(regionName);
+                // regionName = ConfigV2GameRegions.FirstOrDefault();
+                // SetAndSaveConfigValue(iniKeyName, regionName);
+                // return ConfigV2GameRegions.IndexOf(regionName);
+                return -1;
             }
 
             regionName = GetAppConfigValue(iniKeyName).ToString();

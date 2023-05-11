@@ -129,7 +129,6 @@ namespace Hi3Helper.Shared.Region
         public static bool IsPortable = false;
         public static bool IsAppThemeNeedRestart = false;
         public static bool IsAppLangNeedRestart = false;
-        public static bool IsChangeRegionWarningNeedRestart = false;
         public static bool IsFirstInstall = false;
         public static bool IsConsoleEnabled
         {
@@ -141,11 +140,30 @@ namespace Hi3Helper.Shared.Region
             get => GetAppConfigValue("EnableMultipleInstance").ToBoolNullable() ?? false;
             set => SetAndSaveConfigValue("EnableMultipleInstance", value);
         }
+
         public static bool IsShowRegionChangeWarning
         {
             get => GetAppConfigValue("ShowRegionChangeWarning").ToBool();
-            set => SetAndSaveConfigValue("ShowRegionChangeWarning", value);
+            set
+            {
+                SetAndSaveConfigValue("ShowRegionChangeWarning", value);
+                s_OnIsShowRegionChangeWarningChangedEvent?.Invoke(value);
+            }
         }
+        private static event Action<bool> s_OnIsShowRegionChangeWarningChangedEvent;
+        public static event Action<bool> OnIsShowRegionChangeWarningChangedEvent
+        {
+            add
+            {
+                s_OnIsShowRegionChangeWarningChangedEvent += value;
+                value(IsShowRegionChangeWarning); // invoke it immediately
+            }
+            remove
+            {
+                s_OnIsShowRegionChangeWarningChangedEvent -= value;
+            }
+        }
+
         public static bool ForceInvokeUpdate = false;
         public static GameInstallStateEnum GameInstallationState = GameInstallStateEnum.NotInstalled;
 

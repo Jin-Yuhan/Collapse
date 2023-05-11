@@ -76,7 +76,8 @@
     "RegionLoadingSubtitleTimeOut": "Server đang tải {0} đã quá hạn (> {1} giây). Đang thử lại...",
     "RegionLoadingSubtitleTooLong": "Lần thử lại sẽ lâu hơn dự kiến. Hãy đảm bảo rằng mạng của bạn vẫn đang kết nối ổn định!",
     "NavCtrlTitleSettings": "Cài đặt trình khởi chạy",
-    "NotifNeverAsk": "Không hiển thị lại"
+    "NotifNeverAsk": "Không hiển thị lại",
+    "RegionComboBoxPlaceholder": "Chọn vùng"
   },
 
   "_HomePage": {

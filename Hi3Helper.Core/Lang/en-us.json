@@ -76,7 +76,8 @@
     "RegionLoadingSubtitleTimeOut": "Action timed out (> {1} seconds). Retrying to load Region {0}...",
     "RegionLoadingSubtitleTooLong": "This is taking a bit longer than expected... Please ensure that your Internet connection is stable!",
     "NavCtrlTitleSettings": "App Settings",
-    "NotifNeverAsk": "Never show again"
+    "NotifNeverAsk": "Never show again",
+    "RegionComboBoxPlaceholder": "Select Region"
   },
 
   "_HomePage": {
